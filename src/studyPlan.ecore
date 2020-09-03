@@ -11,6 +11,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="courseInSemester" upperBound="-1"
         eType="#//courseInSemester"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Specialisations" upperBound="-1"
+        eType="#//Specialisation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Semester">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="semesterNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -21,6 +23,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="courseInSemester" upperBound="-1"
         eType="#//courseInSemester"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerLevelSpecialisation"
+        eType="#//Specialisation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="courseInSemester">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Course" eType="#//Course"/>
