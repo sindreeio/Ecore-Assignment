@@ -16,5 +16,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Specialisation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="SpecialisationInProgramme"
         lowerBound="1" eType="#//Programme"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="courseInSpecialisation"
+        upperBound="-1" eType="#//courseInSpecialisation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="courseInSpecialisation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Course" eType="#//Course"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mandatory" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>
