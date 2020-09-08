@@ -4,20 +4,25 @@ package ecore.impl;
 
 import ecore.EcorePackage;
 import ecore.Programme;
-import ecore.courseInSemester;
+import ecore.Semester;
+import ecore.Specialisation;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +33,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * </p>
  * <ul>
  *   <li>{@link ecore.impl.ProgrammeImpl#getName <em>Name</em>}</li>
- *   <li>{@link ecore.impl.ProgrammeImpl#getCourseInSemester <em>Course In Semester</em>}</li>
+ *   <li>{@link ecore.impl.ProgrammeImpl#getSpecialisations <em>Specialisations</em>}</li>
+ *   <li>{@link ecore.impl.ProgrammeImpl#getSemesterInProgramme <em>Semester In Programme</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,14 +61,24 @@ public class ProgrammeImpl extends MinimalEObjectImpl.Container implements Progr
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCourseInSemester() <em>Course In Semester</em>}' reference list.
+	 * The cached value of the '{@link #getSpecialisations() <em>Specialisations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCourseInSemester()
+	 * @see #getSpecialisations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<courseInSemester> courseInSemester;
+	protected EList<Specialisation> specialisations;
+
+	/**
+	 * The cached value of the '{@link #getSemesterInProgramme() <em>Semester In Programme</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSemesterInProgramme()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Semester> semesterInProgramme;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,11 +128,53 @@ public class ProgrammeImpl extends MinimalEObjectImpl.Container implements Progr
 	 * @generated
 	 */
 	@Override
-	public EList<courseInSemester> getCourseInSemester() {
-		if (courseInSemester == null) {
-			courseInSemester = new EObjectResolvingEList<courseInSemester>(courseInSemester.class, this, EcorePackage.PROGRAMME__COURSE_IN_SEMESTER);
+	public EList<Specialisation> getSpecialisations() {
+		if (specialisations == null) {
+			specialisations = new EObjectContainmentWithInverseEList<Specialisation>(Specialisation.class, this, EcorePackage.PROGRAMME__SPECIALISATIONS, EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME);
 		}
-		return courseInSemester;
+		return specialisations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Semester> getSemesterInProgramme() {
+		if (semesterInProgramme == null) {
+			semesterInProgramme = new EObjectResolvingEList<Semester>(Semester.class, this, EcorePackage.PROGRAMME__SEMESTER_IN_PROGRAMME);
+		}
+		return semesterInProgramme;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EcorePackage.PROGRAMME__SPECIALISATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSpecialisations()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EcorePackage.PROGRAMME__SPECIALISATIONS:
+				return ((InternalEList<?>)getSpecialisations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -129,8 +187,10 @@ public class ProgrammeImpl extends MinimalEObjectImpl.Container implements Progr
 		switch (featureID) {
 			case EcorePackage.PROGRAMME__NAME:
 				return getName();
-			case EcorePackage.PROGRAMME__COURSE_IN_SEMESTER:
-				return getCourseInSemester();
+			case EcorePackage.PROGRAMME__SPECIALISATIONS:
+				return getSpecialisations();
+			case EcorePackage.PROGRAMME__SEMESTER_IN_PROGRAMME:
+				return getSemesterInProgramme();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,9 +207,13 @@ public class ProgrammeImpl extends MinimalEObjectImpl.Container implements Progr
 			case EcorePackage.PROGRAMME__NAME:
 				setName((String)newValue);
 				return;
-			case EcorePackage.PROGRAMME__COURSE_IN_SEMESTER:
-				getCourseInSemester().clear();
-				getCourseInSemester().addAll((Collection<? extends courseInSemester>)newValue);
+			case EcorePackage.PROGRAMME__SPECIALISATIONS:
+				getSpecialisations().clear();
+				getSpecialisations().addAll((Collection<? extends Specialisation>)newValue);
+				return;
+			case EcorePackage.PROGRAMME__SEMESTER_IN_PROGRAMME:
+				getSemesterInProgramme().clear();
+				getSemesterInProgramme().addAll((Collection<? extends Semester>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -166,8 +230,11 @@ public class ProgrammeImpl extends MinimalEObjectImpl.Container implements Progr
 			case EcorePackage.PROGRAMME__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case EcorePackage.PROGRAMME__COURSE_IN_SEMESTER:
-				getCourseInSemester().clear();
+			case EcorePackage.PROGRAMME__SPECIALISATIONS:
+				getSpecialisations().clear();
+				return;
+			case EcorePackage.PROGRAMME__SEMESTER_IN_PROGRAMME:
+				getSemesterInProgramme().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -183,8 +250,10 @@ public class ProgrammeImpl extends MinimalEObjectImpl.Container implements Progr
 		switch (featureID) {
 			case EcorePackage.PROGRAMME__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case EcorePackage.PROGRAMME__COURSE_IN_SEMESTER:
-				return courseInSemester != null && !courseInSemester.isEmpty();
+			case EcorePackage.PROGRAMME__SPECIALISATIONS:
+				return specialisations != null && !specialisations.isEmpty();
+			case EcorePackage.PROGRAMME__SEMESTER_IN_PROGRAMME:
+				return semesterInProgramme != null && !semesterInProgramme.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

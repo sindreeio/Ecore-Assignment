@@ -40,15 +40,6 @@ public interface EcoreFactory extends EFactory {
 	Programme createProgramme();
 
 	/**
-	 * Returns a new object of class '<em>Semester</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Semester</em>'.
-	 * @generated
-	 */
-	Semester createSemester();
-
-	/**
 	 * Returns a new object of class '<em>Specialisation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,6 +56,51 @@ public interface EcoreFactory extends EFactory {
 	 * @generated
 	 */
 	courseInSemester createcourseInSemester();
+
+	/**
+	 * Returns a new object of class '<em>Semester</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Semester</em>'.
+	 * @generated
+	 */
+	Semester createSemester();
+
+	/**
+	 * Returns a new object of class '<em>Individual Study Plan</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Individual Study Plan</em>'.
+	 * @generated
+	 */
+	IndividualStudyPlan createIndividualStudyPlan();
+
+	/**
+	 * Returns a new object of class '<em>Semester In Studyplan</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Semester In Studyplan</em>'.
+	 * @generated
+	 */
+	SemesterInStudyplan createSemesterInStudyplan();
+
+	/**
+	 * Returns a new object of class '<em>Elective</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Elective</em>'.
+	 * @generated
+	 */
+	Elective createElective();
+
+	/**
+	 * Returns a new object of class '<em>Exam Attempt</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Exam Attempt</em>'.
+	 * @generated
+	 */
+	ExamAttempt createExamAttempt();
 
 	/**
 	 * Returns the package supported by this factory.

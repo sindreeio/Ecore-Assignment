@@ -3,8 +3,8 @@
 package ecore.impl;
 
 import ecore.EcorePackage;
-import ecore.Semester;
-import ecore.courseInSemester;
+import ecore.IndividualStudyPlan;
+import ecore.SemesterInStudyplan;
 
 import java.util.Collection;
 
@@ -24,55 +24,55 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Semester</b></em>'.
+ * An implementation of the model object '<em><b>Individual Study Plan</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ecore.impl.SemesterImpl#getSemesterNumber <em>Semester Number</em>}</li>
- *   <li>{@link ecore.impl.SemesterImpl#getCourseInSemester <em>Course In Semester</em>}</li>
+ *   <li>{@link ecore.impl.IndividualStudyPlanImpl#getStudentName <em>Student Name</em>}</li>
+ *   <li>{@link ecore.impl.IndividualStudyPlanImpl#getSemestersInStudyplan <em>Semesters In Studyplan</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SemesterImpl extends MinimalEObjectImpl.Container implements Semester {
+public class IndividualStudyPlanImpl extends MinimalEObjectImpl.Container implements IndividualStudyPlan {
 	/**
-	 * The default value of the '{@link #getSemesterNumber() <em>Semester Number</em>}' attribute.
+	 * The default value of the '{@link #getStudentName() <em>Student Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSemesterNumber()
+	 * @see #getStudentName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SEMESTER_NUMBER_EDEFAULT = 0;
+	protected static final String STUDENT_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSemesterNumber() <em>Semester Number</em>}' attribute.
+	 * The cached value of the '{@link #getStudentName() <em>Student Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSemesterNumber()
+	 * @see #getStudentName()
 	 * @generated
 	 * @ordered
 	 */
-	protected int semesterNumber = SEMESTER_NUMBER_EDEFAULT;
+	protected String studentName = STUDENT_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCourseInSemester() <em>Course In Semester</em>}' containment reference list.
+	 * The cached value of the '{@link #getSemestersInStudyplan() <em>Semesters In Studyplan</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCourseInSemester()
+	 * @see #getSemestersInStudyplan()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<courseInSemester> courseInSemester;
+	protected EList<SemesterInStudyplan> semestersInStudyplan;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SemesterImpl() {
+	protected IndividualStudyPlanImpl() {
 		super();
 	}
 
@@ -83,7 +83,7 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.SEMESTER;
+		return EcorePackage.Literals.INDIVIDUAL_STUDY_PLAN;
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * @generated
 	 */
 	@Override
-	public int getSemesterNumber() {
-		return semesterNumber;
+	public String getStudentName() {
+		return studentName;
 	}
 
 	/**
@@ -102,11 +102,11 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * @generated
 	 */
 	@Override
-	public void setSemesterNumber(int newSemesterNumber) {
-		int oldSemesterNumber = semesterNumber;
-		semesterNumber = newSemesterNumber;
+	public void setStudentName(String newStudentName) {
+		String oldStudentName = studentName;
+		studentName = newStudentName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.SEMESTER__SEMESTER_NUMBER, oldSemesterNumber, semesterNumber));
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.INDIVIDUAL_STUDY_PLAN__STUDENT_NAME, oldStudentName, studentName));
 	}
 
 	/**
@@ -115,11 +115,11 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * @generated
 	 */
 	@Override
-	public EList<courseInSemester> getCourseInSemester() {
-		if (courseInSemester == null) {
-			courseInSemester = new EObjectContainmentWithInverseEList<courseInSemester>(courseInSemester.class, this, EcorePackage.SEMESTER__COURSE_IN_SEMESTER, EcorePackage.COURSE_IN_SEMESTER__SEMESTER);
+	public EList<SemesterInStudyplan> getSemestersInStudyplan() {
+		if (semestersInStudyplan == null) {
+			semestersInStudyplan = new EObjectContainmentWithInverseEList<SemesterInStudyplan>(SemesterInStudyplan.class, this, EcorePackage.INDIVIDUAL_STUDY_PLAN__SEMESTERS_IN_STUDYPLAN, EcorePackage.SEMESTER_IN_STUDYPLAN__STUDYPLAN);
 		}
-		return courseInSemester;
+		return semestersInStudyplan;
 	}
 
 	/**
@@ -131,8 +131,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.SEMESTER__COURSE_IN_SEMESTER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCourseInSemester()).basicAdd(otherEnd, msgs);
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__SEMESTERS_IN_STUDYPLAN:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSemestersInStudyplan()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,8 +145,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.SEMESTER__COURSE_IN_SEMESTER:
-				return ((InternalEList<?>)getCourseInSemester()).basicRemove(otherEnd, msgs);
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__SEMESTERS_IN_STUDYPLAN:
+				return ((InternalEList<?>)getSemestersInStudyplan()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,10 +159,10 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.SEMESTER__SEMESTER_NUMBER:
-				return getSemesterNumber();
-			case EcorePackage.SEMESTER__COURSE_IN_SEMESTER:
-				return getCourseInSemester();
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__STUDENT_NAME:
+				return getStudentName();
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__SEMESTERS_IN_STUDYPLAN:
+				return getSemestersInStudyplan();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,12 +176,12 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.SEMESTER__SEMESTER_NUMBER:
-				setSemesterNumber((Integer)newValue);
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__STUDENT_NAME:
+				setStudentName((String)newValue);
 				return;
-			case EcorePackage.SEMESTER__COURSE_IN_SEMESTER:
-				getCourseInSemester().clear();
-				getCourseInSemester().addAll((Collection<? extends courseInSemester>)newValue);
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__SEMESTERS_IN_STUDYPLAN:
+				getSemestersInStudyplan().clear();
+				getSemestersInStudyplan().addAll((Collection<? extends SemesterInStudyplan>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,11 +195,11 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.SEMESTER__SEMESTER_NUMBER:
-				setSemesterNumber(SEMESTER_NUMBER_EDEFAULT);
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__STUDENT_NAME:
+				setStudentName(STUDENT_NAME_EDEFAULT);
 				return;
-			case EcorePackage.SEMESTER__COURSE_IN_SEMESTER:
-				getCourseInSemester().clear();
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__SEMESTERS_IN_STUDYPLAN:
+				getSemestersInStudyplan().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -213,10 +213,10 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.SEMESTER__SEMESTER_NUMBER:
-				return semesterNumber != SEMESTER_NUMBER_EDEFAULT;
-			case EcorePackage.SEMESTER__COURSE_IN_SEMESTER:
-				return courseInSemester != null && !courseInSemester.isEmpty();
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__STUDENT_NAME:
+				return STUDENT_NAME_EDEFAULT == null ? studentName != null : !STUDENT_NAME_EDEFAULT.equals(studentName);
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN__SEMESTERS_IN_STUDYPLAN:
+				return semestersInStudyplan != null && !semestersInStudyplan.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -231,10 +231,10 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (semesterNumber: ");
-		result.append(semesterNumber);
+		result.append(" (studentName: ");
+		result.append(studentName);
 		result.append(')');
 		return result.toString();
 	}
 
-} //SemesterImpl
+} //IndividualStudyPlanImpl

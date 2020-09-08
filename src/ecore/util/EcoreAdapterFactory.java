@@ -76,16 +76,32 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl {
 				return createProgrammeAdapter();
 			}
 			@Override
-			public Adapter caseSemester(Semester object) {
-				return createSemesterAdapter();
-			}
-			@Override
 			public Adapter caseSpecialisation(Specialisation object) {
 				return createSpecialisationAdapter();
 			}
 			@Override
 			public Adapter casecourseInSemester(courseInSemester object) {
 				return createcourseInSemesterAdapter();
+			}
+			@Override
+			public Adapter caseSemester(Semester object) {
+				return createSemesterAdapter();
+			}
+			@Override
+			public Adapter caseIndividualStudyPlan(IndividualStudyPlan object) {
+				return createIndividualStudyPlanAdapter();
+			}
+			@Override
+			public Adapter caseSemesterInStudyplan(SemesterInStudyplan object) {
+				return createSemesterInStudyplanAdapter();
+			}
+			@Override
+			public Adapter caseElective(Elective object) {
+				return createElectiveAdapter();
+			}
+			@Override
+			public Adapter caseExamAttempt(ExamAttempt object) {
+				return createExamAttemptAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -136,20 +152,6 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ecore.Semester <em>Semester</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ecore.Semester
-	 * @generated
-	 */
-	public Adapter createSemesterAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ecore.Specialisation <em>Specialisation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -174,6 +176,76 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createcourseInSemesterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ecore.Semester <em>Semester</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ecore.Semester
+	 * @generated
+	 */
+	public Adapter createSemesterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ecore.IndividualStudyPlan <em>Individual Study Plan</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ecore.IndividualStudyPlan
+	 * @generated
+	 */
+	public Adapter createIndividualStudyPlanAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ecore.SemesterInStudyplan <em>Semester In Studyplan</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ecore.SemesterInStudyplan
+	 * @generated
+	 */
+	public Adapter createSemesterInStudyplanAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ecore.Elective <em>Elective</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ecore.Elective
+	 * @generated
+	 */
+	public Adapter createElectiveAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ecore.ExamAttempt <em>Exam Attempt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ecore.ExamAttempt
+	 * @generated
+	 */
+	public Adapter createExamAttemptAdapter() {
 		return null;
 	}
 

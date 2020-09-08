@@ -4,15 +4,18 @@ package ecore.impl;
 
 import ecore.Course;
 import ecore.EcorePackage;
+import ecore.Semester;
 import ecore.courseInSemester;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,26 +62,6 @@ public class courseInSemesterImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected boolean mandatory = MANDATORY_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getSemester() <em>Semester</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSemester()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int SEMESTER_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getSemester() <em>Semester</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSemester()
-	 * @generated
-	 * @ordered
-	 */
-	protected int semester = SEMESTER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,8 +151,19 @@ public class courseInSemesterImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public int getSemester() {
-		return semester;
+	public Semester getSemester() {
+		if (eContainerFeatureID() != EcorePackage.COURSE_IN_SEMESTER__SEMESTER) return null;
+		return (Semester)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSemester(Semester newSemester, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newSemester, EcorePackage.COURSE_IN_SEMESTER__SEMESTER, msgs);
+		return msgs;
 	}
 
 	/**
@@ -178,11 +172,64 @@ public class courseInSemesterImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void setSemester(int newSemester) {
-		int oldSemester = semester;
-		semester = newSemester;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COURSE_IN_SEMESTER__SEMESTER, oldSemester, semester));
+	public void setSemester(Semester newSemester) {
+		if (newSemester != eInternalContainer() || (eContainerFeatureID() != EcorePackage.COURSE_IN_SEMESTER__SEMESTER && newSemester != null)) {
+			if (EcoreUtil.isAncestor(this, newSemester))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newSemester != null)
+				msgs = ((InternalEObject)newSemester).eInverseAdd(this, EcorePackage.SEMESTER__COURSE_IN_SEMESTER, Semester.class, msgs);
+			msgs = basicSetSemester(newSemester, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COURSE_IN_SEMESTER__SEMESTER, newSemester, newSemester));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EcorePackage.COURSE_IN_SEMESTER__SEMESTER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetSemester((Semester)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EcorePackage.COURSE_IN_SEMESTER__SEMESTER:
+				return basicSetSemester(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case EcorePackage.COURSE_IN_SEMESTER__SEMESTER:
+				return eInternalContainer().eInverseRemove(this, EcorePackage.SEMESTER__COURSE_IN_SEMESTER, Semester.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -219,7 +266,7 @@ public class courseInSemesterImpl extends MinimalEObjectImpl.Container implement
 				setMandatory((Boolean)newValue);
 				return;
 			case EcorePackage.COURSE_IN_SEMESTER__SEMESTER:
-				setSemester((Integer)newValue);
+				setSemester((Semester)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -240,7 +287,7 @@ public class courseInSemesterImpl extends MinimalEObjectImpl.Container implement
 				setMandatory(MANDATORY_EDEFAULT);
 				return;
 			case EcorePackage.COURSE_IN_SEMESTER__SEMESTER:
-				setSemester(SEMESTER_EDEFAULT);
+				setSemester((Semester)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -259,7 +306,7 @@ public class courseInSemesterImpl extends MinimalEObjectImpl.Container implement
 			case EcorePackage.COURSE_IN_SEMESTER__MANDATORY:
 				return mandatory != MANDATORY_EDEFAULT;
 			case EcorePackage.COURSE_IN_SEMESTER__SEMESTER:
-				return semester != SEMESTER_EDEFAULT;
+				return getSemester() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -276,8 +323,6 @@ public class courseInSemesterImpl extends MinimalEObjectImpl.Container implement
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (mandatory: ");
 		result.append(mandatory);
-		result.append(", semester: ");
-		result.append(semester);
 		result.append(')');
 		return result.toString();
 	}

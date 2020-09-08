@@ -5,15 +5,22 @@ package ecore.impl;
 import ecore.Course;
 import ecore.EcoreFactory;
 import ecore.EcorePackage;
+import ecore.Elective;
+import ecore.ExamAttempt;
+import ecore.IndividualStudyPlan;
 import ecore.Programme;
 import ecore.Semester;
+import ecore.SemesterInStudyplan;
 import ecore.Specialisation;
 import ecore.courseInSemester;
+
+import ecore.util.EcoreValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -43,13 +50,6 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass semesterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass specialisationEClass = null;
 
 	/**
@@ -58,6 +58,41 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * @generated
 	 */
 	private EClass courseInSemesterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass semesterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass individualStudyPlanEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass semesterInStudyplanEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass electiveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass examAttemptEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -111,6 +146,16 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 
 		// Initialize created meta-data
 		theEcorePackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theEcorePackage,
+			 new EValidator.Descriptor() {
+				 @Override
+				 public EValidator getEValidator() {
+					 return EcoreValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theEcorePackage.freeze();
@@ -196,7 +241,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getProgramme_CourseInSemester() {
+	public EReference getProgramme_Specialisations() {
 		return (EReference)programmeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -206,18 +251,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getSemester() {
-		return semesterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getSemester_SemesterNumber() {
-		return (EAttribute)semesterEClass.getEStructuralFeatures().get(0);
+	public EReference getProgramme_SemesterInProgramme() {
+		return (EReference)programmeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -246,8 +281,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getSpecialisation_CourseInSemester() {
-		return (EReference)specialisationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getSpecialisation_Name() {
+		return (EAttribute)specialisationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -256,8 +291,18 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSpecialisation_Name() {
-		return (EAttribute)specialisationEClass.getEStructuralFeatures().get(2);
+	public EReference getSpecialisation_LowerLevelSpecialisation() {
+		return (EReference)specialisationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSpecialisation_SemesterInSpecialisation() {
+		return (EReference)specialisationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -296,8 +341,188 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getcourseInSemester_Semester() {
-		return (EAttribute)courseInSemesterEClass.getEStructuralFeatures().get(2);
+	public EReference getcourseInSemester_Semester() {
+		return (EReference)courseInSemesterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSemester() {
+		return semesterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSemester_SemesterNumber() {
+		return (EAttribute)semesterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSemester_CourseInSemester() {
+		return (EReference)semesterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIndividualStudyPlan() {
+		return individualStudyPlanEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIndividualStudyPlan_StudentName() {
+		return (EAttribute)individualStudyPlanEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIndividualStudyPlan_SemestersInStudyplan() {
+		return (EReference)individualStudyPlanEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSemesterInStudyplan() {
+		return semesterInStudyplanEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSemesterInStudyplan_Studyplan() {
+		return (EReference)semesterInStudyplanEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSemesterInStudyplan_Semester() {
+		return (EReference)semesterInStudyplanEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSemesterInStudyplan_Electives() {
+		return (EReference)semesterInStudyplanEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getElective() {
+		return electiveEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getElective_Course() {
+		return (EReference)electiveEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getElective_SemesterInStudyplan() {
+		return (EReference)electiveEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getElective_ExamAttempts() {
+		return (EReference)electiveEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getExamAttempt() {
+		return examAttemptEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getExamAttempt_Date() {
+		return (EAttribute)examAttemptEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getExamAttempt_Grade() {
+		return (EAttribute)examAttemptEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getExamAttempt_Elective() {
+		return (EReference)examAttemptEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -337,20 +562,42 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 
 		programmeEClass = createEClass(PROGRAMME);
 		createEAttribute(programmeEClass, PROGRAMME__NAME);
-		createEReference(programmeEClass, PROGRAMME__COURSE_IN_SEMESTER);
-
-		semesterEClass = createEClass(SEMESTER);
-		createEAttribute(semesterEClass, SEMESTER__SEMESTER_NUMBER);
+		createEReference(programmeEClass, PROGRAMME__SPECIALISATIONS);
+		createEReference(programmeEClass, PROGRAMME__SEMESTER_IN_PROGRAMME);
 
 		specialisationEClass = createEClass(SPECIALISATION);
 		createEReference(specialisationEClass, SPECIALISATION__SPECIALISATION_IN_PROGRAMME);
-		createEReference(specialisationEClass, SPECIALISATION__COURSE_IN_SEMESTER);
+		createEReference(specialisationEClass, SPECIALISATION__SEMESTER_IN_SPECIALISATION);
 		createEAttribute(specialisationEClass, SPECIALISATION__NAME);
+		createEReference(specialisationEClass, SPECIALISATION__LOWER_LEVEL_SPECIALISATION);
 
 		courseInSemesterEClass = createEClass(COURSE_IN_SEMESTER);
 		createEReference(courseInSemesterEClass, COURSE_IN_SEMESTER__COURSE);
 		createEAttribute(courseInSemesterEClass, COURSE_IN_SEMESTER__MANDATORY);
-		createEAttribute(courseInSemesterEClass, COURSE_IN_SEMESTER__SEMESTER);
+		createEReference(courseInSemesterEClass, COURSE_IN_SEMESTER__SEMESTER);
+
+		semesterEClass = createEClass(SEMESTER);
+		createEAttribute(semesterEClass, SEMESTER__SEMESTER_NUMBER);
+		createEReference(semesterEClass, SEMESTER__COURSE_IN_SEMESTER);
+
+		individualStudyPlanEClass = createEClass(INDIVIDUAL_STUDY_PLAN);
+		createEAttribute(individualStudyPlanEClass, INDIVIDUAL_STUDY_PLAN__STUDENT_NAME);
+		createEReference(individualStudyPlanEClass, INDIVIDUAL_STUDY_PLAN__SEMESTERS_IN_STUDYPLAN);
+
+		semesterInStudyplanEClass = createEClass(SEMESTER_IN_STUDYPLAN);
+		createEReference(semesterInStudyplanEClass, SEMESTER_IN_STUDYPLAN__STUDYPLAN);
+		createEReference(semesterInStudyplanEClass, SEMESTER_IN_STUDYPLAN__SEMESTER);
+		createEReference(semesterInStudyplanEClass, SEMESTER_IN_STUDYPLAN__ELECTIVES);
+
+		electiveEClass = createEClass(ELECTIVE);
+		createEReference(electiveEClass, ELECTIVE__COURSE);
+		createEReference(electiveEClass, ELECTIVE__SEMESTER_IN_STUDYPLAN);
+		createEReference(electiveEClass, ELECTIVE__EXAM_ATTEMPTS);
+
+		examAttemptEClass = createEClass(EXAM_ATTEMPT);
+		createEAttribute(examAttemptEClass, EXAM_ATTEMPT__DATE);
+		createEAttribute(examAttemptEClass, EXAM_ATTEMPT__GRADE);
+		createEReference(examAttemptEClass, EXAM_ATTEMPT__ELECTIVE);
 	}
 
 	/**
@@ -390,24 +637,78 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		initEAttribute(getCourse_Level(), ecorePackage.getEString(), "level", null, 0, 1, Course.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(programmeEClass, Programme.class, "Programme", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProgramme_Name(), ecorePackage.getEString(), "name", null, 0, 1, Programme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProgramme_CourseInSemester(), this.getcourseInSemester(), null, "courseInSemester", null, 0, -1, Programme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(semesterEClass, Semester.class, "Semester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSemester_SemesterNumber(), ecorePackage.getEInt(), "semesterNumber", null, 0, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProgramme_Name(), ecorePackage.getEString(), "name", null, 0, 1, Programme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProgramme_Specialisations(), this.getSpecialisation(), this.getSpecialisation_SpecialisationInProgramme(), "Specialisations", null, 0, -1, Programme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProgramme_SemesterInProgramme(), this.getSemester(), null, "semesterInProgramme", null, 0, -1, Programme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(specialisationEClass, Specialisation.class, "Specialisation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpecialisation_SpecialisationInProgramme(), this.getProgramme(), null, "SpecialisationInProgramme", null, 1, 1, Specialisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpecialisation_CourseInSemester(), this.getcourseInSemester(), null, "courseInSemester", null, 0, -1, Specialisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecialisation_SpecialisationInProgramme(), this.getProgramme(), this.getProgramme_Specialisations(), "SpecialisationInProgramme", null, 1, 1, Specialisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecialisation_SemesterInSpecialisation(), this.getSemester(), null, "semesterInSpecialisation", null, 0, -1, Specialisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSpecialisation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Specialisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecialisation_LowerLevelSpecialisation(), this.getSpecialisation(), null, "lowerLevelSpecialisation", null, 0, 1, Specialisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(courseInSemesterEClass, courseInSemester.class, "courseInSemester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getcourseInSemester_Course(), this.getCourse(), null, "Course", null, 0, 1, courseInSemester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getcourseInSemester_Mandatory(), ecorePackage.getEBoolean(), "mandatory", null, 0, 1, courseInSemester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getcourseInSemester_Semester(), ecorePackage.getEInt(), "semester", null, 0, 1, courseInSemester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getcourseInSemester_Semester(), this.getSemester(), this.getSemester_CourseInSemester(), "semester", null, 0, 1, courseInSemester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(semesterEClass, Semester.class, "Semester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSemester_SemesterNumber(), ecorePackage.getEInt(), "semesterNumber", null, 0, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSemester_CourseInSemester(), this.getcourseInSemester(), this.getcourseInSemester_Semester(), "courseInSemester", null, 0, -1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(individualStudyPlanEClass, IndividualStudyPlan.class, "IndividualStudyPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIndividualStudyPlan_StudentName(), ecorePackage.getEString(), "studentName", null, 0, 1, IndividualStudyPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIndividualStudyPlan_SemestersInStudyplan(), this.getSemesterInStudyplan(), this.getSemesterInStudyplan_Studyplan(), "semestersInStudyplan", null, 0, -1, IndividualStudyPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(semesterInStudyplanEClass, SemesterInStudyplan.class, "SemesterInStudyplan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSemesterInStudyplan_Studyplan(), this.getIndividualStudyPlan(), this.getIndividualStudyPlan_SemestersInStudyplan(), "studyplan", null, 0, 1, SemesterInStudyplan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSemesterInStudyplan_Semester(), this.getSemester(), null, "semester", null, 0, 1, SemesterInStudyplan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSemesterInStudyplan_Electives(), this.getElective(), this.getElective_SemesterInStudyplan(), "electives", null, 0, -1, SemesterInStudyplan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(electiveEClass, Elective.class, "Elective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getElective_Course(), this.getCourse(), null, "course", null, 0, 1, Elective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElective_SemesterInStudyplan(), this.getSemesterInStudyplan(), this.getSemesterInStudyplan_Electives(), "semesterInStudyplan", null, 0, 1, Elective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElective_ExamAttempts(), this.getExamAttempt(), this.getExamAttempt_Elective(), "examAttempts", null, 0, -1, Elective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(examAttemptEClass, ExamAttempt.class, "ExamAttempt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExamAttempt_Date(), ecorePackage.getEDate(), "Date", null, 0, 1, ExamAttempt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExamAttempt_Grade(), ecorePackage.getEChar(), "Grade", null, 0, 1, ExamAttempt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExamAttempt_Elective(), this.getElective(), this.getElective_ExamAttempts(), "elective", null, 0, 1, ExamAttempt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation
+		  (programmeEClass,
+		   source,
+		   new String[] {
+			   "constraints", "NotTooManyMandatoryPoints"
+		   });
+		addAnnotation
+		  (semesterInStudyplanEClass,
+		   source,
+		   new String[] {
+			   "constraints", "containAllMandatoryCourses hasAllNeccesaryPoints"
+		   });
+		addAnnotation
+		  (electiveEClass,
+		   source,
+		   new String[] {
+			   "constraints", "courseInStudyPlan"
+		   });
 	}
 
 } //EcorePackageImpl

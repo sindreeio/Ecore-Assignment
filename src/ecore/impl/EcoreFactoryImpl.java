@@ -58,9 +58,13 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		switch (eClass.getClassifierID()) {
 			case EcorePackage.COURSE: return createCourse();
 			case EcorePackage.PROGRAMME: return createProgramme();
-			case EcorePackage.SEMESTER: return createSemester();
 			case EcorePackage.SPECIALISATION: return createSpecialisation();
 			case EcorePackage.COURSE_IN_SEMESTER: return createcourseInSemester();
+			case EcorePackage.SEMESTER: return createSemester();
+			case EcorePackage.INDIVIDUAL_STUDY_PLAN: return createIndividualStudyPlan();
+			case EcorePackage.SEMESTER_IN_STUDYPLAN: return createSemesterInStudyplan();
+			case EcorePackage.ELECTIVE: return createElective();
+			case EcorePackage.EXAM_ATTEMPT: return createExamAttempt();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -94,17 +98,6 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 	 * @generated
 	 */
 	@Override
-	public Semester createSemester() {
-		SemesterImpl semester = new SemesterImpl();
-		return semester;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Specialisation createSpecialisation() {
 		SpecialisationImpl specialisation = new SpecialisationImpl();
 		return specialisation;
@@ -119,6 +112,61 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 	public courseInSemester createcourseInSemester() {
 		courseInSemesterImpl courseInSemester = new courseInSemesterImpl();
 		return courseInSemester;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Semester createSemester() {
+		SemesterImpl semester = new SemesterImpl();
+		return semester;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IndividualStudyPlan createIndividualStudyPlan() {
+		IndividualStudyPlanImpl individualStudyPlan = new IndividualStudyPlanImpl();
+		return individualStudyPlan;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SemesterInStudyplan createSemesterInStudyplan() {
+		SemesterInStudyplanImpl semesterInStudyplan = new SemesterInStudyplanImpl();
+		return semesterInStudyplan;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Elective createElective() {
+		ElectiveImpl elective = new ElectiveImpl();
+		return elective;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ExamAttempt createExamAttempt() {
+		ExamAttemptImpl examAttempt = new ExamAttemptImpl();
+		return examAttempt;
 	}
 
 	/**

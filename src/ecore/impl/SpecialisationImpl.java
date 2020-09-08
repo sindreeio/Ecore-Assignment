@@ -4,12 +4,13 @@ package ecore.impl;
 
 import ecore.EcorePackage;
 import ecore.Programme;
+import ecore.Semester;
 import ecore.Specialisation;
-import ecore.courseInSemester;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,32 +32,23 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * </p>
  * <ul>
  *   <li>{@link ecore.impl.SpecialisationImpl#getSpecialisationInProgramme <em>Specialisation In Programme</em>}</li>
- *   <li>{@link ecore.impl.SpecialisationImpl#getCourseInSemester <em>Course In Semester</em>}</li>
+ *   <li>{@link ecore.impl.SpecialisationImpl#getSemesterInSpecialisation <em>Semester In Specialisation</em>}</li>
  *   <li>{@link ecore.impl.SpecialisationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ecore.impl.SpecialisationImpl#getLowerLevelSpecialisation <em>Lower Level Specialisation</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SpecialisationImpl extends MinimalEObjectImpl.Container implements Specialisation {
 	/**
-	 * The cached value of the '{@link #getSpecialisationInProgramme() <em>Specialisation In Programme</em>}' reference.
+	 * The cached value of the '{@link #getSemesterInSpecialisation() <em>Semester In Specialisation</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSpecialisationInProgramme()
+	 * @see #getSemesterInSpecialisation()
 	 * @generated
 	 * @ordered
 	 */
-	protected Programme specialisationInProgramme;
-
-	/**
-	 * The cached value of the '{@link #getCourseInSemester() <em>Course In Semester</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCourseInSemester()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<courseInSemester> courseInSemester;
+	protected EList<Semester> semesterInSpecialisation;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -76,6 +69,16 @@ public class SpecialisationImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getLowerLevelSpecialisation() <em>Lower Level Specialisation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLowerLevelSpecialisation()
+	 * @generated
+	 * @ordered
+	 */
+	protected Specialisation lowerLevelSpecialisation;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,15 +106,8 @@ public class SpecialisationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	public Programme getSpecialisationInProgramme() {
-		if (specialisationInProgramme != null && specialisationInProgramme.eIsProxy()) {
-			InternalEObject oldSpecialisationInProgramme = (InternalEObject)specialisationInProgramme;
-			specialisationInProgramme = (Programme)eResolveProxy(oldSpecialisationInProgramme);
-			if (specialisationInProgramme != oldSpecialisationInProgramme) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME, oldSpecialisationInProgramme, specialisationInProgramme));
-			}
-		}
-		return specialisationInProgramme;
+		if (eContainerFeatureID() != EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME) return null;
+		return (Programme)eInternalContainer();
 	}
 
 	/**
@@ -119,8 +115,9 @@ public class SpecialisationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Programme basicGetSpecialisationInProgramme() {
-		return specialisationInProgramme;
+	public NotificationChain basicSetSpecialisationInProgramme(Programme newSpecialisationInProgramme, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newSpecialisationInProgramme, EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME, msgs);
+		return msgs;
 	}
 
 	/**
@@ -130,23 +127,19 @@ public class SpecialisationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	public void setSpecialisationInProgramme(Programme newSpecialisationInProgramme) {
-		Programme oldSpecialisationInProgramme = specialisationInProgramme;
-		specialisationInProgramme = newSpecialisationInProgramme;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME, oldSpecialisationInProgramme, specialisationInProgramme));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<courseInSemester> getCourseInSemester() {
-		if (courseInSemester == null) {
-			courseInSemester = new EObjectResolvingEList<courseInSemester>(courseInSemester.class, this, EcorePackage.SPECIALISATION__COURSE_IN_SEMESTER);
+		if (newSpecialisationInProgramme != eInternalContainer() || (eContainerFeatureID() != EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME && newSpecialisationInProgramme != null)) {
+			if (EcoreUtil.isAncestor(this, newSpecialisationInProgramme))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newSpecialisationInProgramme != null)
+				msgs = ((InternalEObject)newSpecialisationInProgramme).eInverseAdd(this, EcorePackage.PROGRAMME__SPECIALISATIONS, Programme.class, msgs);
+			msgs = basicSetSpecialisationInProgramme(newSpecialisationInProgramme, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return courseInSemester;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME, newSpecialisationInProgramme, newSpecialisationInProgramme));
 	}
 
 	/**
@@ -178,15 +171,114 @@ public class SpecialisationImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
+	public Specialisation getLowerLevelSpecialisation() {
+		if (lowerLevelSpecialisation != null && lowerLevelSpecialisation.eIsProxy()) {
+			InternalEObject oldLowerLevelSpecialisation = (InternalEObject)lowerLevelSpecialisation;
+			lowerLevelSpecialisation = (Specialisation)eResolveProxy(oldLowerLevelSpecialisation);
+			if (lowerLevelSpecialisation != oldLowerLevelSpecialisation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.SPECIALISATION__LOWER_LEVEL_SPECIALISATION, oldLowerLevelSpecialisation, lowerLevelSpecialisation));
+			}
+		}
+		return lowerLevelSpecialisation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Specialisation basicGetLowerLevelSpecialisation() {
+		return lowerLevelSpecialisation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLowerLevelSpecialisation(Specialisation newLowerLevelSpecialisation) {
+		Specialisation oldLowerLevelSpecialisation = lowerLevelSpecialisation;
+		lowerLevelSpecialisation = newLowerLevelSpecialisation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.SPECIALISATION__LOWER_LEVEL_SPECIALISATION, oldLowerLevelSpecialisation, lowerLevelSpecialisation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Semester> getSemesterInSpecialisation() {
+		if (semesterInSpecialisation == null) {
+			semesterInSpecialisation = new EObjectResolvingEList<Semester>(Semester.class, this, EcorePackage.SPECIALISATION__SEMESTER_IN_SPECIALISATION);
+		}
+		return semesterInSpecialisation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetSpecialisationInProgramme((Programme)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME:
+				return basicSetSpecialisationInProgramme(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME:
+				return eInternalContainer().eInverseRemove(this, EcorePackage.PROGRAMME__SPECIALISATIONS, Programme.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME:
-				if (resolve) return getSpecialisationInProgramme();
-				return basicGetSpecialisationInProgramme();
-			case EcorePackage.SPECIALISATION__COURSE_IN_SEMESTER:
-				return getCourseInSemester();
+				return getSpecialisationInProgramme();
+			case EcorePackage.SPECIALISATION__SEMESTER_IN_SPECIALISATION:
+				return getSemesterInSpecialisation();
 			case EcorePackage.SPECIALISATION__NAME:
 				return getName();
+			case EcorePackage.SPECIALISATION__LOWER_LEVEL_SPECIALISATION:
+				if (resolve) return getLowerLevelSpecialisation();
+				return basicGetLowerLevelSpecialisation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -203,12 +295,15 @@ public class SpecialisationImpl extends MinimalEObjectImpl.Container implements 
 			case EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME:
 				setSpecialisationInProgramme((Programme)newValue);
 				return;
-			case EcorePackage.SPECIALISATION__COURSE_IN_SEMESTER:
-				getCourseInSemester().clear();
-				getCourseInSemester().addAll((Collection<? extends courseInSemester>)newValue);
+			case EcorePackage.SPECIALISATION__SEMESTER_IN_SPECIALISATION:
+				getSemesterInSpecialisation().clear();
+				getSemesterInSpecialisation().addAll((Collection<? extends Semester>)newValue);
 				return;
 			case EcorePackage.SPECIALISATION__NAME:
 				setName((String)newValue);
+				return;
+			case EcorePackage.SPECIALISATION__LOWER_LEVEL_SPECIALISATION:
+				setLowerLevelSpecialisation((Specialisation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -225,11 +320,14 @@ public class SpecialisationImpl extends MinimalEObjectImpl.Container implements 
 			case EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME:
 				setSpecialisationInProgramme((Programme)null);
 				return;
-			case EcorePackage.SPECIALISATION__COURSE_IN_SEMESTER:
-				getCourseInSemester().clear();
+			case EcorePackage.SPECIALISATION__SEMESTER_IN_SPECIALISATION:
+				getSemesterInSpecialisation().clear();
 				return;
 			case EcorePackage.SPECIALISATION__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case EcorePackage.SPECIALISATION__LOWER_LEVEL_SPECIALISATION:
+				setLowerLevelSpecialisation((Specialisation)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -244,11 +342,13 @@ public class SpecialisationImpl extends MinimalEObjectImpl.Container implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EcorePackage.SPECIALISATION__SPECIALISATION_IN_PROGRAMME:
-				return specialisationInProgramme != null;
-			case EcorePackage.SPECIALISATION__COURSE_IN_SEMESTER:
-				return courseInSemester != null && !courseInSemester.isEmpty();
+				return getSpecialisationInProgramme() != null;
+			case EcorePackage.SPECIALISATION__SEMESTER_IN_SPECIALISATION:
+				return semesterInSpecialisation != null && !semesterInSpecialisation.isEmpty();
 			case EcorePackage.SPECIALISATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case EcorePackage.SPECIALISATION__LOWER_LEVEL_SPECIALISATION:
+				return lowerLevelSpecialisation != null;
 		}
 		return super.eIsSet(featureID);
 	}

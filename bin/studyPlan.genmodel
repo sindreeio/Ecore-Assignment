@@ -13,20 +13,42 @@
     </genClasses>
     <genClasses ecoreClass="studyPlan.ecore#//Programme">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//Programme/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Programme/courseInSemester"/>
-    </genClasses>
-    <genClasses ecoreClass="studyPlan.ecore#//Semester">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//Semester/semesterNumber"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Programme/Specialisations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Programme/semesterInProgramme"/>
     </genClasses>
     <genClasses ecoreClass="studyPlan.ecore#//Specialisation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Specialisation/SpecialisationInProgramme"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Specialisation/courseInSemester"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Specialisation/semesterInSpecialisation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//Specialisation/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Specialisation/lowerLevelSpecialisation"/>
     </genClasses>
     <genClasses ecoreClass="studyPlan.ecore#//courseInSemester">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//courseInSemester/Course"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//courseInSemester/mandatory"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//courseInSemester/semester"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference studyPlan.ecore#//courseInSemester/semester"/>
+    </genClasses>
+    <genClasses ecoreClass="studyPlan.ecore#//Semester">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//Semester/semesterNumber"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Semester/courseInSemester"/>
+    </genClasses>
+    <genClasses ecoreClass="studyPlan.ecore#//IndividualStudyPlan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//IndividualStudyPlan/studentName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference studyPlan.ecore#//IndividualStudyPlan/semestersInStudyplan"/>
+    </genClasses>
+    <genClasses ecoreClass="studyPlan.ecore#//SemesterInStudyplan">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference studyPlan.ecore#//SemesterInStudyplan/studyplan"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//SemesterInStudyplan/semester"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference studyPlan.ecore#//SemesterInStudyplan/electives"/>
+    </genClasses>
+    <genClasses ecoreClass="studyPlan.ecore#//Elective">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Elective/course"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference studyPlan.ecore#//Elective/semesterInStudyplan"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference studyPlan.ecore#//Elective/examAttempts"/>
+    </genClasses>
+    <genClasses ecoreClass="studyPlan.ecore#//ExamAttempt">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//ExamAttempt/Date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//ExamAttempt/Grade"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference studyPlan.ecore#//ExamAttempt/elective"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

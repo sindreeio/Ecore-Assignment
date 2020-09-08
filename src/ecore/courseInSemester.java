@@ -68,25 +68,27 @@ public interface courseInSemester extends EObject {
 	void setMandatory(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Semester</b></em>' attribute.
+	 * Returns the value of the '<em><b>Semester</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link ecore.Semester#getCourseInSemester <em>Course In Semester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semester</em>' attribute.
-	 * @see #setSemester(int)
+	 * @return the value of the '<em>Semester</em>' container reference.
+	 * @see #setSemester(Semester)
 	 * @see ecore.EcorePackage#getcourseInSemester_Semester()
-	 * @model
+	 * @see ecore.Semester#getCourseInSemester
+	 * @model opposite="courseInSemester" transient="false"
 	 * @generated
 	 */
-	int getSemester();
+	Semester getSemester();
 
 	/**
-	 * Sets the value of the '{@link ecore.courseInSemester#getSemester <em>Semester</em>}' attribute.
+	 * Sets the value of the '{@link ecore.courseInSemester#getSemester <em>Semester</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Semester</em>' attribute.
+	 * @param value the new value of the '<em>Semester</em>' container reference.
 	 * @see #getSemester()
 	 * @generated
 	 */
-	void setSemester(int value);
+	void setSemester(Semester value);
 
 } // courseInSemester
