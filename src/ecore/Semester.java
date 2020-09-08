@@ -29,22 +29,11 @@ public interface Semester extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Semester Number</em>' attribute.
-	 * @see #setSemesterNumber(int)
 	 * @see ecore.EcorePackage#getSemester_SemesterNumber()
-	 * @model id="true"
+	 * @model id="true" changeable="false"
 	 * @generated
 	 */
 	int getSemesterNumber();
-
-	/**
-	 * Sets the value of the '{@link ecore.Semester#getSemesterNumber <em>Semester Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Semester Number</em>' attribute.
-	 * @see #getSemesterNumber()
-	 * @generated
-	 */
-	void setSemesterNumber(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Course In Semester</b></em>' containment reference list.

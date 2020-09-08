@@ -3,8 +3,8 @@
 package ecore.util;
 
 import ecore.*;
-
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -106,6 +106,8 @@ public class EcoreValidator extends EObjectValidator {
 				return validateElective((Elective)value, diagnostics, context);
 			case EcorePackage.EXAM_ATTEMPT:
 				return validateExamAttempt((ExamAttempt)value, diagnostics, context);
+			case EcorePackage.GRADE:
+				return validateGrade((Character)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -176,7 +178,76 @@ public class EcoreValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSpecialisation(Specialisation specialisation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(specialisation, diagnostics, context);
+		if (!validate_NoCircularContainment(specialisation, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSpecialisation_notTooManyMandatoryPoints(specialisation, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSpecialisation_lowerLevelSpecialisationProgramSameAsThis(specialisation, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the notTooManyMandatoryPoints constraint of '<em>Specialisation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateSpecialisation_notTooManyMandatoryPoints(Specialisation specialisation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		for (Semester semester : specialisation.getSemesterInSpecialisation()) {
+			float sum = 0.0f;
+			for (courseInSemester coInSe : semester.getCourseInSemester()) {
+				sum+= coInSe.getCourse().getCredits();
+			}
+			if (sum > 30.0f) {
+				if (diagnostics != null) {
+					diagnostics.add
+						(createDiagnostic
+							(Diagnostic.ERROR,
+							 DIAGNOSTIC_SOURCE,
+							 0,
+							 "_UI_GenericConstraint_diagnostic",
+							 new Object[] { "notTooManyMandatoryPoints", getObjectLabel(specialisation, context) },
+							 new Object[] { specialisation },
+							 context));
+				}
+			return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the lowerLevelSpecialisationProgramSameAsThis constraint of '<em>Specialisation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSpecialisation_lowerLevelSpecialisationProgramSameAsThis(Specialisation specialisation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "lowerLevelSpecialisationProgramSameAsThis", getObjectLabel(specialisation, context) },
+						 new Object[] { specialisation },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -354,6 +425,46 @@ public class EcoreValidator extends EObjectValidator {
 	 */
 	public boolean validateExamAttempt(ExamAttempt examAttempt, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(examAttempt, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGrade(Character grade, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = validateGrade_Enumeration(grade, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @see #validateGrade_Enumeration
+	 */
+	public static final Collection<Object> GRADE__ENUMERATION__VALUES =
+		wrapEnumerationValues
+			(new Object[] {
+				 Character.valueOf('A'),
+				 Character.valueOf('B'),
+				 Character.valueOf('C'),
+				 Character.valueOf('D'),
+				 Character.valueOf('E'),
+				 Character.valueOf('F')
+			 });
+
+	/**
+	 * Validates the Enumeration constraint of '<em>Grade</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGrade_Enumeration(Character grade, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = GRADE__ENUMERATION__VALUES.contains(grade);
+		if (!result && diagnostics != null)
+			reportEnumerationViolation(EcorePackage.Literals.GRADE, grade, GRADE__ENUMERATION__VALUES, diagnostics, context);
+		return result;
 	}
 
 	/**

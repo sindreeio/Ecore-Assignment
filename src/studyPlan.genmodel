@@ -5,6 +5,7 @@
     complianceLevel="10.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>studyPlan.ecore</foreignModel>
   <genPackages prefix="Ecore" disposableProviderFactory="true" ecorePackage="studyPlan.ecore#/">
+    <genDataTypes ecoreDataType="studyPlan.ecore#//Grade"/>
     <genClasses ecoreClass="studyPlan.ecore#//Course">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//Course/courseCode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//Course/name"/>
@@ -47,8 +48,8 @@
     </genClasses>
     <genClasses ecoreClass="studyPlan.ecore#//ExamAttempt">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//ExamAttempt/Date"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//ExamAttempt/Grade"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference studyPlan.ecore#//ExamAttempt/elective"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyPlan.ecore#//ExamAttempt/grade"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

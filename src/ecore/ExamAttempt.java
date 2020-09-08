@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ecore.ExamAttempt#getDate <em>Date</em>}</li>
- *   <li>{@link ecore.ExamAttempt#getGrade <em>Grade</em>}</li>
  *   <li>{@link ecore.ExamAttempt#getElective <em>Elective</em>}</li>
+ *   <li>{@link ecore.ExamAttempt#getGrade <em>Grade</em>}</li>
  * </ul>
  *
  * @see ecore.EcorePackage#getExamAttempt()
@@ -52,12 +52,12 @@ public interface ExamAttempt extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grade</em>' attribute.
-	 * @see #setGrade(char)
+	 * @see #setGrade(Character)
 	 * @see ecore.EcorePackage#getExamAttempt_Grade()
-	 * @model
+	 * @model dataType="ecore.Grade"
 	 * @generated
 	 */
-	char getGrade();
+	Character getGrade();
 
 	/**
 	 * Sets the value of the '{@link ecore.ExamAttempt#getGrade <em>Grade</em>}' attribute.
@@ -67,7 +67,7 @@ public interface ExamAttempt extends EObject {
 	 * @see #getGrade()
 	 * @generated
 	 */
-	void setGrade(char value);
+	void setGrade(Character value);
 
 	/**
 	 * Returns the value of the '<em><b>Elective</b></em>' container reference.

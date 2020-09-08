@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ecore" nsURI="ecore" nsPrefix="ecore">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="validationDelegates" value="http://www.eclipse.org/acceleo/query/1.0"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Course">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="courseCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -18,6 +21,12 @@
         eType="#//Semester"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Specialisation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="notTooManyMandatoryPoints lowerLevelSpecialisationProgramSameAsThis"/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.no/accelo/query/1.0">
+      <details key="lowerLevelSpecialisationProgramSameAsThis" value="self.lowerLevelSpecialisation.SpecialisationInProgramme = self.SpecialisationInProgramme"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="SpecialisationInProgramme"
         lowerBound="1" eType="#//Programme" eOpposite="#//Programme/Specialisations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="semesterInSpecialisation"
@@ -34,7 +43,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Semester">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="semesterNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        iD="true"/>
+        changeable="false" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="courseInSemester" upperBound="-1"
         eType="#//courseInSemester" containment="true" eOpposite="#//courseInSemester/semester"/>
   </eClassifiers>
@@ -65,8 +74,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExamAttempt">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Grade" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EChar"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elective" eType="#//Elective"
         eOpposite="#//Elective/examAttempts"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="grade" eType="#//Grade"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Grade" instanceClassName="java.lang.Character">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="enumeration" value="A B C D E F"/>
+    </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

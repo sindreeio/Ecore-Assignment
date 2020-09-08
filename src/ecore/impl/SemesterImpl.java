@@ -7,16 +7,12 @@ import ecore.Semester;
 import ecore.courseInSemester;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -102,19 +98,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * @generated
 	 */
 	@Override
-	public void setSemesterNumber(int newSemesterNumber) {
-		int oldSemesterNumber = semesterNumber;
-		semesterNumber = newSemesterNumber;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.SEMESTER__SEMESTER_NUMBER, oldSemesterNumber, semesterNumber));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<courseInSemester> getCourseInSemester() {
 		if (courseInSemester == null) {
 			courseInSemester = new EObjectContainmentWithInverseEList<courseInSemester>(courseInSemester.class, this, EcorePackage.SEMESTER__COURSE_IN_SEMESTER, EcorePackage.COURSE_IN_SEMESTER__SEMESTER);
@@ -176,9 +159,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.SEMESTER__SEMESTER_NUMBER:
-				setSemesterNumber((Integer)newValue);
-				return;
 			case EcorePackage.SEMESTER__COURSE_IN_SEMESTER:
 				getCourseInSemester().clear();
 				getCourseInSemester().addAll((Collection<? extends courseInSemester>)newValue);
@@ -195,9 +175,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.SEMESTER__SEMESTER_NUMBER:
-				setSemesterNumber(SEMESTER_NUMBER_EDEFAULT);
-				return;
 			case EcorePackage.SEMESTER__COURSE_IN_SEMESTER:
 				getCourseInSemester().clear();
 				return;

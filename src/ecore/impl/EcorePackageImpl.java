@@ -15,9 +15,9 @@ import ecore.Specialisation;
 import ecore.courseInSemester;
 
 import ecore.util.EcoreValidator;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
@@ -93,6 +93,13 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * @generated
 	 */
 	private EClass examAttemptEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType gradeEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -512,7 +519,17 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 */
 	@Override
 	public EAttribute getExamAttempt_Grade() {
-		return (EAttribute)examAttemptEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)examAttemptEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EDataType getGrade() {
+		return gradeEDataType;
 	}
 
 	/**
@@ -522,7 +539,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 */
 	@Override
 	public EReference getExamAttempt_Elective() {
-		return (EReference)examAttemptEClass.getEStructuralFeatures().get(2);
+		return (EReference)examAttemptEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -596,8 +613,11 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 
 		examAttemptEClass = createEClass(EXAM_ATTEMPT);
 		createEAttribute(examAttemptEClass, EXAM_ATTEMPT__DATE);
-		createEAttribute(examAttemptEClass, EXAM_ATTEMPT__GRADE);
 		createEReference(examAttemptEClass, EXAM_ATTEMPT__ELECTIVE);
+		createEAttribute(examAttemptEClass, EXAM_ATTEMPT__GRADE);
+
+		// Create data types
+		gradeEDataType = createEDataType(GRADE);
 	}
 
 	/**
@@ -653,7 +673,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		initEReference(getcourseInSemester_Semester(), this.getSemester(), this.getSemester_CourseInSemester(), "semester", null, 0, 1, courseInSemester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(semesterEClass, Semester.class, "Semester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSemester_SemesterNumber(), ecorePackage.getEInt(), "semesterNumber", null, 0, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSemester_SemesterNumber(), ecorePackage.getEInt(), "semesterNumber", null, 0, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSemester_CourseInSemester(), this.getcourseInSemester(), this.getcourseInSemester_Semester(), "courseInSemester", null, 0, -1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(individualStudyPlanEClass, IndividualStudyPlan.class, "IndividualStudyPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -672,8 +692,11 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 
 		initEClass(examAttemptEClass, ExamAttempt.class, "ExamAttempt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExamAttempt_Date(), ecorePackage.getEDate(), "Date", null, 0, 1, ExamAttempt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getExamAttempt_Grade(), ecorePackage.getEChar(), "Grade", null, 0, 1, ExamAttempt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExamAttempt_Elective(), this.getElective(), this.getElective_ExamAttempts(), "elective", null, 0, 1, ExamAttempt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExamAttempt_Grade(), this.getGrade(), "grade", null, 0, 1, ExamAttempt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(gradeEDataType, Character.class, "Grade", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -681,6 +704,10 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+		// http://eclipse.no/accelo/query/1.0
+		create_1Annotations();
+		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
+		createExtendedMetaDataAnnotations();
 	}
 
 	/**
@@ -692,10 +719,22 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore";
 		addAnnotation
+		  (this,
+		   source,
+		   new String[] {
+			   "validationDelegates", "http://www.eclipse.org/acceleo/query/1.0"
+		   });
+		addAnnotation
 		  (programmeEClass,
 		   source,
 		   new String[] {
 			   "constraints", "NotTooManyMandatoryPoints"
+		   });
+		addAnnotation
+		  (specialisationEClass,
+		   source,
+		   new String[] {
+			   "constraints", "notTooManyMandatoryPoints lowerLevelSpecialisationProgramSameAsThis"
 		   });
 		addAnnotation
 		  (semesterInStudyplanEClass,
@@ -708,6 +747,38 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		   source,
 		   new String[] {
 			   "constraints", "courseInStudyPlan"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://eclipse.no/accelo/query/1.0</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void create_1Annotations() {
+		String source = "http://eclipse.no/accelo/query/1.0";
+		addAnnotation
+		  (specialisationEClass,
+		   source,
+		   new String[] {
+			   "lowerLevelSpecialisationProgramSameAsThis", "self.lowerLevelSpecialisation.SpecialisationInProgramme = self.SpecialisationInProgramme"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createExtendedMetaDataAnnotations() {
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
+		addAnnotation
+		  (gradeEDataType,
+		   source,
+		   new String[] {
+			   "enumeration", "A B C D E F"
 		   });
 	}
 

@@ -5,7 +5,6 @@ package ecore.impl;
 import ecore.EcorePackage;
 import ecore.Elective;
 import ecore.ExamAttempt;
-
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -28,8 +27,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * </p>
  * <ul>
  *   <li>{@link ecore.impl.ExamAttemptImpl#getDate <em>Date</em>}</li>
- *   <li>{@link ecore.impl.ExamAttemptImpl#getGrade <em>Grade</em>}</li>
  *   <li>{@link ecore.impl.ExamAttemptImpl#getElective <em>Elective</em>}</li>
+ *   <li>{@link ecore.impl.ExamAttemptImpl#getGrade <em>Grade</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,7 +62,7 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 	 * @generated
 	 * @ordered
 	 */
-	protected static final char GRADE_EDEFAULT = '\u0000';
+	protected static final Character GRADE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getGrade() <em>Grade</em>}' attribute.
@@ -73,7 +72,7 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 	 * @generated
 	 * @ordered
 	 */
-	protected char grade = GRADE_EDEFAULT;
+	protected Character grade = GRADE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,7 +122,7 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 	 * @generated
 	 */
 	@Override
-	public char getGrade() {
+	public Character getGrade() {
 		return grade;
 	}
 
@@ -133,8 +132,8 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 	 * @generated
 	 */
 	@Override
-	public void setGrade(char newGrade) {
-		char oldGrade = grade;
+	public void setGrade(Character newGrade) {
+		Character oldGrade = grade;
 		grade = newGrade;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EXAM_ATTEMPT__GRADE, oldGrade, grade));
@@ -237,10 +236,10 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 		switch (featureID) {
 			case EcorePackage.EXAM_ATTEMPT__DATE:
 				return getDate();
-			case EcorePackage.EXAM_ATTEMPT__GRADE:
-				return getGrade();
 			case EcorePackage.EXAM_ATTEMPT__ELECTIVE:
 				return getElective();
+			case EcorePackage.EXAM_ATTEMPT__GRADE:
+				return getGrade();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -256,11 +255,11 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 			case EcorePackage.EXAM_ATTEMPT__DATE:
 				setDate((Date)newValue);
 				return;
-			case EcorePackage.EXAM_ATTEMPT__GRADE:
-				setGrade((Character)newValue);
-				return;
 			case EcorePackage.EXAM_ATTEMPT__ELECTIVE:
 				setElective((Elective)newValue);
+				return;
+			case EcorePackage.EXAM_ATTEMPT__GRADE:
+				setGrade((Character)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -277,11 +276,11 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 			case EcorePackage.EXAM_ATTEMPT__DATE:
 				setDate(DATE_EDEFAULT);
 				return;
-			case EcorePackage.EXAM_ATTEMPT__GRADE:
-				setGrade(GRADE_EDEFAULT);
-				return;
 			case EcorePackage.EXAM_ATTEMPT__ELECTIVE:
 				setElective((Elective)null);
+				return;
+			case EcorePackage.EXAM_ATTEMPT__GRADE:
+				setGrade(GRADE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -297,10 +296,10 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 		switch (featureID) {
 			case EcorePackage.EXAM_ATTEMPT__DATE:
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
-			case EcorePackage.EXAM_ATTEMPT__GRADE:
-				return grade != GRADE_EDEFAULT;
 			case EcorePackage.EXAM_ATTEMPT__ELECTIVE:
 				return getElective() != null;
+			case EcorePackage.EXAM_ATTEMPT__GRADE:
+				return GRADE_EDEFAULT == null ? grade != null : !GRADE_EDEFAULT.equals(grade);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -317,7 +316,7 @@ public class ExamAttemptImpl extends MinimalEObjectImpl.Container implements Exa
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (Date: ");
 		result.append(date);
-		result.append(", Grade: ");
+		result.append(", grade: ");
 		result.append(grade);
 		result.append(')');
 		return result.toString();

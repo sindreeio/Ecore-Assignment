@@ -4,6 +4,7 @@ package ecore;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see ecore.EcoreFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='http://www.eclipse.org/acceleo/query/1.0'"
  * @generated
  */
 public interface EcorePackage extends EPackage {
@@ -517,22 +519,22 @@ public interface EcorePackage extends EPackage {
 	int EXAM_ATTEMPT__DATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Grade</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXAM_ATTEMPT__GRADE = 1;
-
-	/**
 	 * The feature id for the '<em><b>Elective</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXAM_ATTEMPT__ELECTIVE = 2;
+	int EXAM_ATTEMPT__ELECTIVE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Grade</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXAM_ATTEMPT__GRADE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Exam Attempt</em>' class.
@@ -551,6 +553,17 @@ public interface EcorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EXAM_ATTEMPT_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '<em>Grade</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Character
+	 * @see ecore.impl.EcorePackageImpl#getGrade()
+	 * @generated
+	 */
+	int GRADE = 9;
 
 
 	/**
@@ -930,6 +943,18 @@ public interface EcorePackage extends EPackage {
 	EAttribute getExamAttempt_Grade();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Character <em>Grade</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Grade</em>'.
+	 * @see java.lang.Character
+	 * @model instanceClass="java.lang.Character"
+	 *        extendedMetaData="enumeration='A B C D E F'"
+	 * @generated
+	 */
+	EDataType getGrade();
+
+	/**
 	 * Returns the meta object for the container reference '{@link ecore.ExamAttempt#getElective <em>Elective</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1260,6 +1285,16 @@ public interface EcorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXAM_ATTEMPT__GRADE = eINSTANCE.getExamAttempt_Grade();
+
+		/**
+		 * The meta object literal for the '<em>Grade</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Character
+		 * @see ecore.impl.EcorePackageImpl#getGrade()
+		 * @generated
+		 */
+		EDataType GRADE = eINSTANCE.getGrade();
 
 		/**
 		 * The meta object literal for the '<em><b>Elective</b></em>' container reference feature.

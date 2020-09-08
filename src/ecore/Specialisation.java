@@ -22,7 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see ecore.EcorePackage#getSpecialisation()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='notTooManyMandatoryPoints lowerLevelSpecialisationProgramSameAsThis'"
+ *        annotation="http://eclipse.no/accelo/query/1.0 lowerLevelSpecialisationProgramSameAsThis='self.lowerLevelSpecialisation.SpecialisationInProgramme = self.SpecialisationInProgramme'"
  * @generated
  */
 public interface Specialisation extends EObject {
