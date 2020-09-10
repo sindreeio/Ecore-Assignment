@@ -3,7 +3,7 @@
 Generated code is in three packages. ecore for interfaces, ecore.impl for implemented classes and ecore.util for factory and validation.
 </p>
 
-<h1>Content</h>
+<h1>Content</h1>
 <p>
  The ecore model contains classes and their relations. The programme class has a name and multiple specialisations. The specialisation class has a name and a refrence to a programme and eventually a lower level specialisation if this is a specialisation which branches from another specialisations. The semester class has a link to a programme or specialisation, a semester number and a refrence to multiple courseInSemester. The courseInSemester class is a relation class between Semester and course and indicates if the course is mandatory or not. Course contains general info about the course and has no refrences. IndividualStudyPlan has a refrence to multiple SemesterInStudyplan which has a refrence to semester and multiple electives which represents a slot for a course in the schedule. The elective has a refrence to a course and a refrence to multiple exam attepmts. Grade is a datatype which limits the grade in a examresult to have one of six approved values.
 </p>
